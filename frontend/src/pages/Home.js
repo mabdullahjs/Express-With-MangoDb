@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 // import pakages
 import axios from 'axios'
+import Form from '../components/form';
 
 function Home() {
   const [myData, setMyData] = useState([]);
@@ -12,7 +13,7 @@ function Home() {
       .get("/api/username")
       .then(async(response) => {
         setMyData(response.data);
-        console.log(myData);
+        // console.log(myData);
       })
       .catch((error) => {
         setIsError(error.message); 
@@ -28,6 +29,7 @@ function Home() {
           <h2>{item.load}</h2>
         </div>
       })}
+      <div><Form/></div>
     </div>
   )
 }
