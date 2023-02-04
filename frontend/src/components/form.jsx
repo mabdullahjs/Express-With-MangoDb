@@ -1,25 +1,59 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useState } from 'react'
 
 function Form() {
     const [title, setTitle] = useState('');
     const [load, setLoad] = useState('');
     const [reps, setReps] = useState('');
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(null)
 
-    function postData(){
-        // const workout = {title, load, reps};
-        axios.post('/api/username', {
-            "title": title,
-            "load": load,
-            "reps": reps
-          })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+    // function postData(){
+    //     // const workout = {title, load, reps};
+    //     axios.post('https://abd.up.railway.app/api/username', {
+    //       "title": title,
+    //       "load": load,
+    //       "reps": reps
+    //     })
+    //       .then(function (response) {
+    //         console.log(response);
+    //       })
+    //       .catch(function (error) {
+    //         console.log(error);
+    //       });
+    // }
+    // const postData = async () => {
+    //   const response = await axios.post('https://abd.up.railway.app/api/username', {
+    //           "title": title,
+    //           "load": load,
+    //           "reps": reps
+    //         });
+    //   console.log(response.data);
+    // };
+    const postData = async (e) => {
+      e.preventDefault()
+  
+      const workout = {title, load, reps}
+      
+      const response = await fetch('https://abd.up.railway.app/api/username', {
+        method: 'POST',
+        body: JSON.stringify(workout),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const json = await response.json()
+  
+      if (!response.ok) {
+        setError(json.error)
+      }
+      if (response.ok) {
+        setError(null)
+        setTitle('')
+        setLoad('')
+        setReps('')
+        console.log('new workout added:', json)
+      }
+  
     }
   return (
     <form className="create" > 
@@ -47,6 +81,7 @@ function Form() {
       />
 
       <button onClick={postData}>Add Workout</button>
+      <div>{error}</div>
       {/* {error && <div className="error">{error}</div>} */}
     </form>
   )

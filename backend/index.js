@@ -5,6 +5,10 @@ const mongoose = require('mongoose');
 const app = express();
 const routes = require('./routes/routes')
 
+var cors = require('cors')
+
+app.use(cors()) 
+
 app.use(express.json())
 app.use((req, res, next)=>{
     console.log(req.path , req.method);
@@ -13,7 +17,7 @@ app.use((req, res, next)=>{
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MANGO_DB)
 .then(()=>{
-    app.listen(process.env.PORT)
+    app.listen(process.env.PORT || 4000)
 })
 .catch((error)=>{
     console.log(error);

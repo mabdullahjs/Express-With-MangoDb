@@ -10,7 +10,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("/api/username")
+      .get("https://abd.up.railway.app/api/username")
       .then(async(response) => {
         setMyData(response.data);
         // console.log(myData);
@@ -30,6 +30,7 @@ function Home() {
         </div>
       })}
       <div><Form/></div>
+      <div>{isError}</div>
     </div>
   )
 }
