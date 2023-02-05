@@ -10,7 +10,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("https://abd.up.railway.app/api/username")
+      .get("https://backend322.up.railway.app/api/username")
       .then(async(response) => {
         setMyData(response.data);
         // console.log(myData);

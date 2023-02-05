@@ -34,7 +34,7 @@ function Form() {
   
       const workout = {title, load, reps}
       
-      const response = await fetch('https://abd.up.railway.app/api/username', {
+      const response = await fetch('https://backend322.up.railway.app/api/username', {
         method: 'POST',
         body: JSON.stringify(workout),
         headers: {
