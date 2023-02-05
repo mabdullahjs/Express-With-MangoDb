@@ -15,7 +15,7 @@ app.use((req, res, next)=>{
     next()
 })
 mongoose.set('strictQuery', true);
-mongoose.connect(process.env.MANGO_DB)
+mongoose.connect(process.env.MONGO_DB)
 .then(()=>{
     app.listen(process.env.PORT || 4000)
 })
